@@ -98,9 +98,9 @@ function init() {
     inquirer.prompt(questions)
     .then( answers => {
         const readMeData = generateMarkdown(answers);
-        fs.writeFile('./GeneratedREADME.md', readMeData, err=> {
+        fs.writeFile('./README.md', readMeData, err=> {
             if(err) throw new Error(err);
-            console.log('Read me updated. check GeneratedREADME.md in this directory');
+            console.log('Read me updated. check README.md in this directory');
         });
     });
 
