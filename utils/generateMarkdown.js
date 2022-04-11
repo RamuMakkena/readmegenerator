@@ -53,9 +53,10 @@ function generateTableOfContent(data){
   if(contactInfo){
     stringContents.push('[Questions](#questions)');
   }
+  stringContents = stringContents.join('<br>');
   return `
 ## Table of Contents
-${stringContents.split(/\r?\n/)}
+${stringContents}
   `
 }
 function getInstallationSteps(installationSteps){
@@ -63,7 +64,7 @@ function getInstallationSteps(installationSteps){
     return '';
   }else{
     return `
-##Installation
+## Installation
 ${installationSteps}
 `;
 }
@@ -74,7 +75,7 @@ function getUsageSteps(usageInstructions){
     return '';
   }
   return `
-##Usage
+## Usage
 ${usageInstructions}`;
 }
 function displayContributors(contributors){
@@ -95,7 +96,7 @@ function getTestingSteps(tests){
     return '';
   }else{
     return `
-##Tests
+## Tests
 ${tests}
     `
   }
@@ -114,18 +115,18 @@ Mail to : ${contactInfo}
 function generateMarkdown(data) {
   // Destructuring the input
   const {title, author, description, installationSteps, usageInstructions,license, contributors, tests, contactInfo } = data;
-  return `#${title}
-##Description
+  return `# ${title}
+## Description
   ${description}
   ${generateTableOfContent(data)}
   ${getInstallationSteps(installationSteps)}
   ${getUsageSteps(usageInstructions)}
-##Contributors
+## Contributors
 [${author}](${gitHubURL}+${author})
 ${displayContributors(contributors)}
 ${renderLicenseSection(license)}
 ${getTestingSteps(tests)}
-##Questions
+## Questions
 If you have any questions on this module. Please reachout to 
   [${author}](${gitHubURL}${author})
   ${getContactInfo(contactInfo)}
